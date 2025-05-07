@@ -6,6 +6,7 @@ import com.bootcampW22.EjercicioGlobal.dto.VehicleDto;
 import com.bootcampW22.EjercicioGlobal.entity.Vehicle;
 import com.bootcampW22.EjercicioGlobal.exception.NotFoundException;
 import com.bootcampW22.EjercicioGlobal.repository.IVehicleRepository;
+import com.bootcampW22.EjercicioGlobal.repository.VehicleRepositoryImpl;
 import com.bootcampW22.EjercicioGlobal.service.VehicleServiceImpl;
 import com.bootcampW22.EjercicioGlobal.utils.CustomFactory;
 import org.junit.jupiter.api.Assertions;
@@ -30,7 +31,7 @@ import java.util.List;
 public class VehicleServiceTest {
 
     @Mock
-    IVehicleRepository vehicleRepository;
+    VehicleRepositoryImpl vehicleRepository;
 
     @InjectMocks
     VehicleServiceImpl vehicleServiceImpl;
