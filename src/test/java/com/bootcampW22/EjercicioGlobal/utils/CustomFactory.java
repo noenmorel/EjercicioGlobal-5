@@ -11,13 +11,18 @@ public final class CustomFactory {
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
     //EJERCICIO 0 - BUSCA POR ID
-    public static Vehicle get0Vehicle(Long id){
-        return new Vehicle(
-                id, "test", "test", "test", "test", 1, "1", 1, "test", "test", 1.1, 1.1, 1.1
+    public static List<Vehicle> get0Vehicle(Long id){
+        List<Vehicle> lista = List.of(
+                new Vehicle(id, "test", "test", "test", "test", 2000, "1", 1, "test", "test", 1.1, 1.1, 1.1),
+                new Vehicle(id+1L, "test", "test", "test", "test", 2000, "1", 1, "test", "test", 1.1, 1.1, 1.1)
         );
+        return lista;
     }
-    public static VehicleDto get0VehicleDto(Long id){
-        return objectMapper.convertValue(get0Vehicle(id),VehicleDto.class);
+    public static List<VehicleDto> get0VehicleDto(Long id){
+        return get0Vehicle(id)
+                .stream()
+                .map(x -> objectMapper.convertValue(x, VehicleDto.class))
+                .toList();
     }
 
      //EJERCICIO 1 - BUSCA POR COLOR Y AÑO

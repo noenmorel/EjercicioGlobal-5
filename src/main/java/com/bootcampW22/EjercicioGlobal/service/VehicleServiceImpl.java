@@ -20,6 +20,8 @@ public class VehicleServiceImpl implements IVehicleService{
     public VehicleServiceImpl(VehicleRepositoryImpl vehicleRepository){
         this.vehicleRepository = vehicleRepository;
     }
+
+    //0) Buscar todos los vehiculos
     @Override
     public List<VehicleDto> searchAllVehicles() {
         ObjectMapper mapper = new ObjectMapper();

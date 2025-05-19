@@ -1,7 +1,6 @@
 package com.bootcampW22.EjercicioGlobal.controller;
-import org.apache.tomcat.util.bcel.Const;
+
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,16 +8,17 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import com.bootcampW22.EjercicioGlobal.service.VehicleServiceImpl;
+
+import static org.mockito.Answers.values;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
-@SpringBootTest
-@AutoConfigureMockMvc
-public class VehicleControllerTest {
+import java.io.ObjectInputFilter.Status;
 
-    @Autowired
-    MockMvc mockMvc;
 
+
+public class VehicleControllerIntegrTest {
     
 }
