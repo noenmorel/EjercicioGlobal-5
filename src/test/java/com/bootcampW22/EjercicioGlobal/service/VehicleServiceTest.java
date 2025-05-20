@@ -17,6 +17,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.bootcampW22.EjercicioGlobal.dto.VehicleDto;
+import com.bootcampW22.EjercicioGlobal.dto.VehicleAvgCapacityByBrandDto;
 import com.bootcampW22.EjercicioGlobal.entity.Vehicle;
 import com.bootcampW22.EjercicioGlobal.exception.NotFoundException;
 import com.bootcampW22.EjercicioGlobal.repository.VehicleRepositoryImpl;
