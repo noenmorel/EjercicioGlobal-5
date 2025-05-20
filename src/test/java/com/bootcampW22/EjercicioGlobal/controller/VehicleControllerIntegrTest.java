@@ -18,7 +18,25 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.io.ObjectInputFilter.Status;
 
 
-
+@SpringBootTest
+@AutoConfigureMockMvc
 public class VehicleControllerIntegrTest {
-    
+    @Autowired
+    MockMvc mockMvc;
+
+    @Test
+    public void getVehiclesByColorAndRangeOfYear_okTest() throws Exception {
+        mockMvc.perform(get("/vehicles/brand/{brand}/between/{start_year}/{end_year}","Ford",1997,2020))
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$[0].brand").value("Ford"));
+    }
+
+    @Test
+    public void getVehiclesByColorAndRangeOfYear_notOkTest() throws Exception {
+        mockMvc.perform(get("/vehicles/brand/{brand}/between/{start_year}/{end_year}","Fordddddd",1997,2020))
+        .andExpect(content().contentType(MediaType.APPLICATION_JSON))
+        .andExpect(status().isNotFound())
+        .andExpect(jsonPath("$.message").value("No se encontraron vehículos con esos criterios."));
+    }
 }

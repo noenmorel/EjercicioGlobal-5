@@ -23,6 +23,39 @@ import com.bootcampW22.EjercicioGlobal.exception.NotFoundException;
 import com.bootcampW22.EjercicioGlobal.repository.VehicleRepositoryImpl;
 import com.bootcampW22.EjercicioGlobal.utils.CustomFactory;
 
+@ExtendWith(MockitoExtension.class)
 public class VehicleServiceTest {
+    @Mock
+    VehicleRepositoryImpl vehicleRepositoryImpl;
 
+    @InjectMocks
+    VehicleServiceImpl vehicleServiceImpl;
+
+    @Test
+    public void searchVehiclesByBrandAndRangeOfYear_okTest(){
+        //Arrange
+        List<Vehicle> list = CustomFactory.get234ListVehicleEqualBrand(1L, "fiat");
+        List<VehicleDto> esperado = CustomFactory.get234ListVehicleDtoEqualBrand(1L, "fiat");
+
+        //Act
+        when(vehicleRepositoryImpl.findVehiclesByBrandAndRangeOfYear("fiat", 2020, 2021)).thenReturn(list);
+        List<VehicleDto> resp = vehicleServiceImpl.searchVehiclesByBrandAndRangeOfYear("fiat", 2020, 2021);
+
+        //Assert
+        assertEquals(esperado, resp);
+        assertEquals(2, resp.size());
+        verify(vehicleRepositoryImpl).findVehiclesByBrandAndRangeOfYear("fiat", 2020, 2021);
+    }
+
+    @Test
+    public void searchVehiclesByBrandAndRangeOfYear_notOkTest(){
+        //Arrange
+
+        //Act
+        when(vehicleRepositoryImpl.findVehiclesByBrandAndRangeOfYear("fiat", 2020, 2021)).thenReturn(new ArrayList<>());
+        NotFoundException resp = assertThrows(NotFoundException.class, ()-> vehicleServiceImpl.searchVehiclesByBrandAndRangeOfYear("fiat", 2020, 2021));
+
+        //Assert
+        assertEquals("No se encontraron vehículos con esos criterios.", resp.getMessage());
+    }
 }
